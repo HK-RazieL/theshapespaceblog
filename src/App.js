@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Notifications from "./components/Dashboard/Notifications";
+import SignIn from "./components/User/SignIn";
+import SignUp from "./components/User/SignUp";
+import CreateNewPost from './components/Posts/CreateNewPost';
+import PostDetails from "./components/Posts/PostDetails";
+import "./index.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/" component={Notifications} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/createnewpost" component={CreateNewPost} />
+            <Route path="/post/:id" component={PostDetails} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
